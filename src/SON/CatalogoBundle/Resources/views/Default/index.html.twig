@@ -1,0 +1,27 @@
+{# Aula 6 – Básico sobre Twig. #}
+
+{#
+    Aula 6 - Extendendo o template básico
+    Mostrar esse conteudo no base.html.twig.
+    Nesse bloco do html base.html.twig: {% block body %}{% endblock %}
+    Posso utilizar dessa forma extender um bundle
+    Passando o mesmo e a view de um bubdle que desejar extender
+#}
+{% extends '::base.html.twig' %}
+{% block body %}
+
+
+{# Aula 6 - Tag de comentário #}
+{# Abaixo segue abaixo o recurso de printar a variavel com o twig #}
+Hello {{ name }} {{ quantidade}}!
+<br/><br/>
+
+{#
+    Aula 6 - Tag de Ação
+    Nesse caso executando um for podendo usar if entre outros operadores
+#}
+{%for i in 1..quantidade%}
+    hello {{ name }} - {{ i }} <br/>
+{%endfor %}
+
+{% endblock %}
