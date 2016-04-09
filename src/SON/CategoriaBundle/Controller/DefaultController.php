@@ -14,7 +14,30 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $categorias = $this->listarCategorias();
-        return $this->render('CategoriaBundle:Default:index.html.twig', array('categorias' => $categorias));
+        return $this->render('CategoriaBundle:Default:exercicio1.html.twig',array('categorias' => $categorias));
+    }
+
+    public function buscarCategoriaMaisProdutoAction($nomeCategoria, $nomeProduto)
+    {
+        $nomeCategoria = strtoupper($nomeCategoria);
+        $nomeProduto = strtoupper($nomeProduto);
+
+        $categoriaArray = $this->listarCategorias();
+
+        $mensagem = null;
+        if (! array_key_exists($nomeCategoria, $categoriaArray)) {
+            $mensagem = "Categoria nao cadastrada";
+            return $this->render('CategoriaBundle:Default:exercicio2.html.twig',array('mensagem' => $mensagem));
+        }
+
+        $categoria = $categoriaArray[$nomeCategoria];
+        if (! in_array($nomeProduto, $categoria)) {
+            $mensagem = "O produto $nomeProduto nao esta cadastrado ou nao pertence a categoria $nomeCategoria";
+        }else{
+            $mensagem = "A categoria $nomeCategoria é do produto $nomeProduto.";
+        }
+
+        return $this->render('CategoriaBundle:Default:exercicio2.html.twig',array('mensagem' => $mensagem));
     }
 
     private function listarCategorias()
