@@ -24,16 +24,22 @@ $container->set("request", Request::createFromGlobals());
 Use SON\CatalogoBundle\Entity\Catalogo;
 
 $catalogo = new Catalogo();
-$catalogo->setName("lustres");
-$catalogo->setDescricao("Descricao dos lustres");
+$catalogo->setName("teste");
+$catalogo->setDescricao("Descricao dos testes");
 $catalogo->setLancamento(new \DateTime("tomorrow noon"));
-$catalogo->setImageName("lustres.jpg");
+//$catalogo->setImageName("teste.jpg");
 
 /** Agora chamar via container → O Entity manager | E o instanciando */
-/** @var  $em \Doctrine\ORM\EntityManager */
-$em = $container->get("doctrine");
-$em->persist($catalogo);
-$em->flush();
+
+try{
+    $em = $container->get("doctrine")->getEntityManager();
+    $em->persist($catalogo);
+    $em->flush();
+}catch (Exception $e){
+    print_r($e->getMessage());exit;
+}
+
+echo"entrou aqui";exit;
 
 
 /**
@@ -41,6 +47,7 @@ $em->flush();
  * PARTE 1
  * Exemplo: Do container utilizando o templating
  */
+/*
 $templating = $container->get("templating");
 echo $templating->render(
     "CatalogoBundle:Default:index.html.twig",
@@ -49,5 +56,4 @@ echo $templating->render(
             'quantidade' => '3'
         )
 );
-
-echo"entrou aqui";exit;
+*/
