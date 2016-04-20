@@ -1,0 +1,30 @@
+catalogo:
+    pattern:  /
+    defaults: { _controller: "CatalogoBundle:Catalogo:index" }
+
+catalogo_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "CatalogoBundle:Catalogo:show" }
+
+catalogo_new:
+    pattern:  /new
+    defaults: { _controller: "CatalogoBundle:Catalogo:new" }
+
+catalogo_create:
+    pattern:  /create
+    defaults: { _controller: "CatalogoBundle:Catalogo:create" }
+    requirements: { _method: post }
+
+catalogo_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "CatalogoBundle:Catalogo:edit" }
+
+catalogo_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "CatalogoBundle:Catalogo:update" }
+    requirements: { _method: post }
+
+catalogo_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "CatalogoBundle:Catalogo:delete" }
+    requirements: { _method: post }
