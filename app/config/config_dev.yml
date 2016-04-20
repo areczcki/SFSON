@@ -20,7 +20,9 @@ monolog:
             level: info
 
 assetic:
+    bundle: [ "CatalogoBundle" ]
     use_controller: true
+
 
 #swiftmailer:
 #    delivery_address: me@example.com
