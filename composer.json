@@ -40,5 +40,8 @@
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web"
+    },
+    "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^2.2@dev"
     }
 }
