@@ -5,3 +5,8 @@ catalogo_homepage:
 CatalogoBundle_catalogo:
    resource: "@CatalogoBundle/Resources/config/routing/catalogo.yml"
    prefix:   /catalogo
+
+CatalogoBundle_catalogo_annotation:
+  resource: "@CatalogoBundle/Controller"
+  prefix:   /catalogo
+  type: annotation

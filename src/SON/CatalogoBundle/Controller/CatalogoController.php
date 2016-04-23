@@ -7,10 +7,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use SON\CatalogoBundle\Entity\Catalogo;
 use SON\CatalogoBundle\Form\CatalogoType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * Catalogo controller.
- *
+ * @Template()
+ * @Route("/")
  */
 class CatalogoController extends Controller
 {
@@ -24,9 +27,15 @@ class CatalogoController extends Controller
 
         $entities = $em->getRepository('CatalogoBundle:Catalogo')->findAll();
 
+        return array(
+            'entities' => $entities,
+        );
+
+        /* Retirar pois já tem a chamada no anotation
         return $this->render('CatalogoBundle:Catalogo:index.html.twig', array(
             'entities' => $entities,
         ));
+        */
     }
 
     /**
