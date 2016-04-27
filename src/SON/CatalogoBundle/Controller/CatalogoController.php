@@ -9,6 +9,7 @@ use SON\CatalogoBundle\Entity\Catalogo;
 use SON\CatalogoBundle\Form\CatalogoType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Catalogo controller.
@@ -65,6 +66,12 @@ class CatalogoController extends Controller
      */
     public function newAction()
     {
+        $securityContext = $this->get('security.context');
+
+        if(!$securityContext->isGranted('ROLE_ADMIN')){
+            throw new AccessDeniedException("Somente Admins podem acessar");
+        }
+
         $entity = new Catalogo();
         $form   = $this->createForm(new CatalogoType(), $entity);
 
