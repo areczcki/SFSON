@@ -31,7 +31,7 @@ security:
             #    realm: "Secured Demo Area"
 
     access_control:
-        - { path: ^/catalogo/new, roles: ROLE_USER }
-        - { path: ^/catalogo/create, roles: ROLE_USER }
+        - { path: ^/new, roles: ROLE_USER }
+        - { path: ^/create, roles: ROLE_USER }
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         #- { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }

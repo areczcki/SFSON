@@ -8,5 +8,5 @@ CatalogoBundle_catalogo:
 
 CatalogoBundle_catalogo_annotation:
   resource: "@CatalogoBundle/Controller"
-  prefix:   /catalogo
+  prefix:   /
   type: annotation
