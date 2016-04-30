@@ -24,7 +24,11 @@ class CatalogoController extends Controller
      */
     public function indexAction()
     {
+
         $em = $this->getDoctrine()->getManager();
+
+        //$userRepo = $em->getRepository("UserBundle:User");
+	    //var_dump($userRepo->findOneByUserOrEmail("user"));die;
 
         $entities = $em->getRepository('CatalogoBundle:Catalogo')->findAll();
 
