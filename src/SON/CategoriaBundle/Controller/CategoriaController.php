@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use SON\CategoriaBundle\Entity\Categoria;
 use SON\CategoriaBundle\Form\CategoriaType;
+use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Categoria controller.
@@ -14,12 +16,17 @@ use SON\CategoriaBundle\Form\CategoriaType;
  */
 class CategoriaController extends Controller
 {
+
+    /** @var  SecurityContext */
+    private $securityContext;
+
     /**
      * Lists all Categoria entities.
      *
      */
     public function indexAction()
     {
+        $this->validarPermissao();
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('CategoriaBundle:Categoria')->findAll();
@@ -35,6 +42,7 @@ class CategoriaController extends Controller
      */
     public function showAction($id)
     {
+        $this->validarPermissao();
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('CategoriaBundle:Categoria')->find($id);
@@ -56,6 +64,7 @@ class CategoriaController extends Controller
      */
     public function newAction()
     {
+        $this->validarPermissao();
         $entity = new Categoria();
         $form   = $this->createForm(new CategoriaType(), $entity);
 
@@ -71,6 +80,7 @@ class CategoriaController extends Controller
      */
     public function createAction(Request $request)
     {
+        $this->validarPermissao();
         $entity  = new Categoria();
         $form = $this->createForm(new CategoriaType(), $entity);
         $form->bind($request);
@@ -95,6 +105,7 @@ class CategoriaController extends Controller
      */
     public function editAction($id)
     {
+        $this->validarPermissao();
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('CategoriaBundle:Categoria')->find($id);
@@ -119,6 +130,7 @@ class CategoriaController extends Controller
      */
     public function updateAction(Request $request, $id)
     {
+        $this->validarPermissao();
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('CategoriaBundle:Categoria')->find($id);
@@ -151,6 +163,7 @@ class CategoriaController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
+        $this->validarPermissao();
         $form = $this->createDeleteForm($id);
         $form->bind($request);
 
@@ -176,4 +189,13 @@ class CategoriaController extends Controller
             ->getForm()
         ;
     }
+
+    private function validarPermissao(){
+        $this->securityContext = $this->get('security.context');
+
+        if(!$this->securityContext->isGranted('ROLE_USER')){
+            throw new AccessDeniedException("Somente Admins podem acessar");
+        }
+    }
+
 }

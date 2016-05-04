@@ -1,85 +1,101 @@
 <?php
 
-namespace SON\CategoriaBundle\Controller;
+namespace SON\UserBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
+use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-use SON\CategoriaBundle\Entity\Produto;
-use SON\CategoriaBundle\Form\ProdutoType;
+use SON\UserBundle\Entity\User;
+use SON\UserBundle\Form\UserType;
 
 /**
- * Produto controller.
+ * User controller.
  *
+ * @Route("/user")
  */
-class ProdutoController extends Controller
+class UserController extends Controller
 {
 
     /** @var  SecurityContext */
     private $securityContext;
 
     /**
-     * Lists all Produto entities.
+     * Lists all User entities.
      *
+     * @Route("/", name="user")
+     * @Template()
      */
     public function indexAction()
     {
         $this->validarPermissao();
         $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository('CategoriaBundle:Produto')->findAll();
+        $entities = $em->getRepository('UserBundle:User')->findAll();
 
-        return $this->render('CategoriaBundle:Produto:index.html.twig', array(
+        return array(
             'entities' => $entities,
-        ));
+        );
     }
 
     /**
-     * Finds and displays a Produto entity.
+     * Finds and displays a User entity.
      *
+     * @Route("/{id}/show", name="user_show")
+     * @Template()
      */
     public function showAction($id)
     {
         $this->validarPermissao();
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('CategoriaBundle:Produto')->find($id);
+        $entity = $em->getRepository('UserBundle:User')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Produto entity.');
+            throw $this->createNotFoundException('Unable to find User entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('CategoriaBundle:Produto:show.html.twig', array(
+        return array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
+            'delete_form' => $deleteForm->createView(),
+        );
     }
 
     /**
-     * Displays a form to create a new Produto entity.
+     * Displays a form to create a new User entity.
      *
+     * @Route("/new", name="user_new")
+     * @Template()
      */
     public function newAction()
     {
         $this->validarPermissao();
-        $entity = new Produto();
-        $form   = $this->createForm(new ProdutoType(), $entity);
+        $entity = new User();
+        $form   = $this->createForm(new UserType(), $entity);
 
-        return $this->render('CategoriaBundle:Produto:new.html.twig', array(
+        return array(
             'entity' => $entity,
             'form'   => $form->createView(),
-        ));
+        );
     }
 
     /**
-     * Creates a new Produto entity.
+     * Creates a new User entity.
      *
+     * @Route("/create", name="user_create")
+     * @Method("POST")
+     * @Template("UserBundle:User:new.html.twig")
      */
     public function createAction(Request $request)
     {
         $this->validarPermissao();
-        $entity  = new Produto();
-        $form = $this->createForm(new ProdutoType(), $entity);
+        $entity  = new User();
+        $form = $this->createForm(new UserType(), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
@@ -87,74 +103,81 @@ class ProdutoController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('produto_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('user_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('CategoriaBundle:Produto:new.html.twig', array(
+        return array(
             'entity' => $entity,
             'form'   => $form->createView(),
-        ));
+        );
     }
 
     /**
-     * Displays a form to edit an existing Produto entity.
+     * Displays a form to edit an existing User entity.
      *
+     * @Route("/{id}/edit", name="user_edit")
+     * @Template()
      */
     public function editAction($id)
     {
         $this->validarPermissao();
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('CategoriaBundle:Produto')->find($id);
+        $entity = $em->getRepository('UserBundle:User')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Produto entity.');
+            throw $this->createNotFoundException('Unable to find User entity.');
         }
 
-        $editForm = $this->createForm(new ProdutoType(), $entity);
+        $editForm = $this->createForm(new UserType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('CategoriaBundle:Produto:edit.html.twig', array(
+        return array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        );
     }
 
     /**
-     * Edits an existing Produto entity.
+     * Edits an existing User entity.
      *
+     * @Route("/{id}/update", name="user_update")
+     * @Method("POST")
+     * @Template("UserBundle:User:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $this->validarPermissao();
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('CategoriaBundle:Produto')->find($id);
+        $entity = $em->getRepository('UserBundle:User')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Produto entity.');
+            throw $this->createNotFoundException('Unable to find User entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new ProdutoType(), $entity);
+        $editForm = $this->createForm(new UserType(), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('produto_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('user_edit', array('id' => $id)));
         }
 
-        return $this->render('CategoriaBundle:Produto:edit.html.twig', array(
+        return array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        );
     }
 
     /**
-     * Deletes a Produto entity.
+     * Deletes a User entity.
      *
+     * @Route("/{id}/delete", name="user_delete")
+     * @Method("POST")
      */
     public function deleteAction(Request $request, $id)
     {
@@ -164,17 +187,17 @@ class ProdutoController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('CategoriaBundle:Produto')->find($id);
+            $entity = $em->getRepository('UserBundle:User')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Produto entity.');
+                throw $this->createNotFoundException('Unable to find User entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('produto'));
+        return $this->redirect($this->generateUrl('user'));
     }
 
     private function createDeleteForm($id)

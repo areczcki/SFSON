@@ -1,3 +1,5 @@
+{% extends 'CategoriaBundle::layout.html.twig' %}
+{% block body %}
 <h1>Categoria creation</h1>
 
 <form action="{{ path('categoria_create') }}" method="post" {{ form_enctype(form) }}>
@@ -14,3 +16,4 @@
         </a>
     </li>
 </ul>
+{% endblock %}
