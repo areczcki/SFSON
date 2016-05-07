@@ -2,7 +2,9 @@
 
 namespace SON\CategoriaBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use SON\CategoriaBundle\Entity\Produto;
 
 /**
  * Categoria
@@ -28,11 +30,20 @@ class Categoria
      */
     private $nome;
 
+    /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="Produto", mappedBy="categoria")
+     */
+    protected $produtos;
+
+    public function __construct(){
+        $this->produtos = new ArrayCollection();
+    }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -48,17 +59,57 @@ class Categoria
     public function setNome($nome)
     {
         $this->nome = $nome;
-    
+
         return $this;
     }
 
     /**
      * Get nome
      *
-     * @return string 
+     * @return string
      */
     public function getNome()
     {
         return $this->nome;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getProdutos()
+    {
+        return $this->produtos;
+    }
+
+    /**
+     * @param Collection $produtos
+     */
+    public function setProdutos($produtos)
+    {
+        $this->produtos = $produtos;
+    }
+
+
+    /**
+     * Add produtos
+     *
+     * @param \SON\CategoriaBundle\Entity\Produto $produtos
+     * @return Categoria
+     */
+    public function addProduto(\SON\CategoriaBundle\Entity\Produto $produtos)
+    {
+        $this->produtos[] = $produtos;
+    
+        return $this;
+    }
+
+    /**
+     * Remove produtos
+     *
+     * @param \SON\CategoriaBundle\Entity\Produto $produtos
+     */
+    public function removeProduto(\SON\CategoriaBundle\Entity\Produto $produtos)
+    {
+        $this->produtos->removeElement($produtos);
     }
 }

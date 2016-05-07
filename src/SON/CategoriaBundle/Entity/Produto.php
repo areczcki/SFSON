@@ -3,6 +3,7 @@
 namespace SON\CategoriaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use SON\CategoriaBundle\Entity\Categoria;
 
 /**
  * Produto
@@ -35,6 +36,12 @@ class Produto
      */
     private $unidade;
 
+    /**
+     * @var Categoria|null the group this user belongs (if any)
+     * @ORM\ManyToOne(targetEntity="Categoria", inversedBy="produtos")
+     * @ORM\JoinColumn(name="categoria_id", referencedColumnName="id")
+     */
+    protected $categoria;
 
     /**
      * Get id
@@ -91,4 +98,23 @@ class Produto
     {
         return $this->unidade;
     }
+
+    /**
+     * @return null|Categoria
+     */
+    public function getCategoria()
+    {
+        return $this->categoria;
+    }
+
+    /**
+     * @param null|Categoria $categoria
+     */
+    public function setCategoria($categoria)
+    {
+        $this->categoria = $categoria;
+    }
+
+
+
 }
