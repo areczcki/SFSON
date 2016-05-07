@@ -60,7 +60,7 @@ class User implements AdvancedUserInterface
 
     /**
      * @var bool
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $isActive = true;
 
@@ -305,4 +305,14 @@ class User implements AdvancedUserInterface
         $this->email = $email;
     }
 
+
+    /**
+     * Get isActive
+     *
+     * @return boolean 
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
 }

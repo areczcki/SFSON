@@ -94,11 +94,16 @@ class UserController extends Controller
     public function createAction(Request $request)
     {
         $this->validarPermissao();
-        $entity  = new User();
+
+        $entity = new User();
         $form = $this->createForm(new UserType(), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
+
+            /** Decodifica a senha e o salt */
+            $entity->setPassword($this->encodePassword($entity, $_POST['son_userbundle_usertype']['password']));
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -160,6 +165,10 @@ class UserController extends Controller
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
+
+            /** Decodifica a senha e o salt */
+            $entity->setPassword($this->encodePassword($entity, $_POST['son_userbundle_usertype']['password']));
+
             $em->persist($entity);
             $em->flush();
 
@@ -214,6 +223,13 @@ class UserController extends Controller
         if(!$this->securityContext->isGranted('ROLE_USER')){
             throw new AccessDeniedException("Somente Admins podem acessar");
         }
+    }
+
+    private function encodePassword($user, $plainPassword) {
+        $encoder = $this->get("security.encoder_factory")
+            ->getEncoder($user);
+
+        return $encoder->encodePassword($plainPassword, $user->getSalt());
     }
 
 }

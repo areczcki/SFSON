@@ -1,3 +1,6 @@
+{% extends 'UserBundle::layout.html.twig' %}
+{% block body %}
+
 <h1>User</h1>
 
 <table class="record_properties">
@@ -14,13 +17,15 @@
             <th>Password</th>
             <td>{{ entity.password }}</td>
         </tr>
+        <!--
         <tr>
             <th>Salt</th>
-            <td>{{ entity.salt }}</td>
+            <td> entity.salt </td>
         </tr>
+        -->
         <tr>
             <th>Roles</th>
-            <!--<td>entity.roles</td>-->
+            <td><!--entity.roles--></td>
             <td></td>
         </tr>
         <tr>
@@ -52,3 +57,4 @@
         </form>
     </li>
 </ul>
+{% endblock %}
