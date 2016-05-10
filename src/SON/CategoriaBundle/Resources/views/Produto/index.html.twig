@@ -8,6 +8,7 @@
             <th>Id</th>
             <th>Nome</th>
             <th>Unidade</th>
+            <th>Categoria</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -17,6 +18,7 @@
             <td><a href="{{ path('produto_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
             <td>{{ entity.nome }}</td>
             <td>{{ entity.unidade }}</td>
+            <td>{{ entity.categoria.nome}}</td>
             <td>
                 <ul>
                     <li>

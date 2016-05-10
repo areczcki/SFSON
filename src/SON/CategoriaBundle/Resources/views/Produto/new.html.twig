@@ -3,7 +3,32 @@
 <h1>Produto creation</h1>
 
 <form action="{{ path('produto_create') }}" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
+     <!-- form_widget(form) -->
+
+    <div id="son_categoriabundle_produtotype">
+        <div>
+            <label for="son_categoriabundle_produtotype_nome" class="required">Nome</label>
+            <input type="text" id="son_categoriabundle_produtotype_nome" name="son_categoriabundle_produtotype[nome]" required="required" maxlength="255">
+        </div>
+        <div>
+            <label for="son_categoriabundle_produtotype_unidade" class="required">Unidade</label>
+            <input type="number" id="son_categoriabundle_produtotype_unidade" name="son_categoriabundle_produtotype[unidade]" required="required">
+        </div>
+        <div>
+            <label for="son_categoriabundle_produtotype_Categoria" class="required">Categoria</label>
+
+            <select id="son_categoriabundle_produtotype_Categoria" name="son_categoriabundle_produtotype[Categoria]" required="required">
+                <option value="">Selecione uma Categoria</option>
+                {% for c in categoria %}
+                    <option value="{{ c.id }}">{{ c.nome }}</option>
+                {% endfor %}
+            </select>
+
+
+        </div>
+        <input type="hidden" id="son_categoriabundle_produtotype__token" name="son_categoriabundle_produtotype[_token]" value="7eee06926a3da02396ee0c12fa6581b135b02cab">
+    </div>
+
     <p>
         <button type="submit">Create</button>
     </p>

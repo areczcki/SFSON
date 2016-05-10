@@ -2,6 +2,7 @@
 
 namespace SON\CategoriaBundle\Controller;
 
+use SON\CategoriaBundle\Entity\Categoria;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -63,11 +64,16 @@ class ProdutoController extends Controller
     {
         $this->validarPermissao();
         $entity = new Produto();
-        $form   = $this->createForm(new ProdutoType(), $entity);
+
+        $em = $this->getDoctrine()->getManager();
+        $categorias = $em->getRepository('CategoriaBundle:Categoria')->findAll();
+
+        $form  = $this->createForm(new ProdutoType(), $entity);
 
         return $this->render('CategoriaBundle:Produto:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
+            'categoria' => $categorias,
         ));
     }
 
@@ -78,17 +84,24 @@ class ProdutoController extends Controller
     public function createAction(Request $request)
     {
         $this->validarPermissao();
+
         $entity  = new Produto();
         $form = $this->createForm(new ProdutoType(), $entity);
         $form->bind($request);
 
-        if ($form->isValid()) {
+        //if ($form->isValid()) {
+
             $em = $this->getDoctrine()->getManager();
+
+            $categoria = $em->getRepository('CategoriaBundle:Categoria')->find($_POST['son_categoriabundle_produtotype']['Categoria']);
+            $entity->setCategoria($categoria);
+            //print_r($entity->getCategoria()->getNome());exit;
+
             $em->persist($entity);
             $em->flush();
 
             return $this->redirect($this->generateUrl('produto_show', array('id' => $entity->getId())));
-        }
+        //}
 
         return $this->render('CategoriaBundle:Produto:new.html.twig', array(
             'entity' => $entity,
@@ -182,7 +195,7 @@ class ProdutoController extends Controller
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
             ->getForm()
-        ;
+            ;
     }
 
     private function validarPermissao(){

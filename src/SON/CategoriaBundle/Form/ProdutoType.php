@@ -13,6 +13,7 @@ class ProdutoType extends AbstractType
         $builder
             ->add('nome')
             ->add('unidade')
+            ->add('Categoria')
         ;
     }
 
