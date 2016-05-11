@@ -1,0 +1,11 @@
+{% extends 'UserBundle::layout.html.twig' %}
+{% block title 'Teste' %}
+
+{% block body %}
+
+
+    <form action="{{ path('user_register') }}" method="post">
+        {{  form_widget(form) }}
+        <button type="submit">Enviar</button>
+    </form>
+{% endblock %}

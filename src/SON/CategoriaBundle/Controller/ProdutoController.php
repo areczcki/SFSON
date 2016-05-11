@@ -19,7 +19,7 @@ class ProdutoController extends Controller
 
     /** @var  SecurityContext */
     private $securityContext;
-
+    
     /**
      * Lists all Produto entities.
      *

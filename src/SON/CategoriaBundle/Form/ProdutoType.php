@@ -2,6 +2,7 @@
 
 namespace SON\CategoriaBundle\Form;
 
+use Proxies\__CG__\SON\CategoriaBundle\Entity\Categoria;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -13,8 +14,10 @@ class ProdutoType extends AbstractType
         $builder
             ->add('nome')
             ->add('unidade')
-            ->add('Categoria')
+            //->add('Categoria')
         ;
+
+
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
