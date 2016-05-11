@@ -26,7 +26,13 @@ class RegisterController extends Controller
      */
     public function registerAction(Request $request)
     {
-        $form = $this->createFormBuilder()
+       //$defaultData = array("username" => "Escolha um User");
+        $defaultData = new User();
+        $defaultData->setUsername("escolha um user");
+
+        $form = $this->createFormBuilder($defaultData, array(
+            'data_class' => "SON\UserBundle\Entity\User"
+        ))
             ->add("username", "text")
             ->add("email", "text")
             ->add("password", "repeated",  array(
@@ -38,12 +44,9 @@ class RegisterController extends Controller
             $form->bind($request);
 
             if($form->isValid()){
-                $data = $form->getData();
-
-                $user = new User();
-                $user->setUsername($data['username']);
-                $user->setEmail($data['email']);
-                $user->setPassword($this->encodePassword($user, $data['password']));
+                /** @var  User */
+                $user = $form->getData();
+                $user->setPassword($this->encodePassword($user, $user->getPassword()));
 
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($user);
