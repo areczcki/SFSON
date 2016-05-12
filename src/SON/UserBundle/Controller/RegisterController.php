@@ -45,8 +45,9 @@ class RegisterController extends Controller
                 $em->persist($user);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl("catalogo"));
+                $request->getSession()->setFlash('success', 'Registro feito com sucesso!');
 
+                return $this->redirect($this->generateUrl("catalogo"));
             }
 
         }
