@@ -13,6 +13,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use SON\UserBundle\Entity\User;
 use SON\UserBundle\Form\UserType;
 
+use SON\UserBundle\Form\RegisterFormType;
 
 
 class RegisterController extends Controller
@@ -30,15 +31,7 @@ class RegisterController extends Controller
         $defaultData = new User();
         $defaultData->setUsername("escolha um user");
 
-        $form = $this->createFormBuilder($defaultData, array(
-            'data_class' => "SON\UserBundle\Entity\User"
-        ))
-            ->add("username", "text")
-            ->add("email", "text")
-            ->add("plainPassword", "repeated",  array(
-                "type" => "password"
-            ))
-            ->getForm();
+        $form = $this->createForm(new RegisterFormType(), $defaultData);
 
         if('POST' == $request->getMethod()){
             $form->bind($request);
