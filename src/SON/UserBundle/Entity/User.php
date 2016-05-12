@@ -7,6 +7,7 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\User\Role;
 use Symfony\Component\Security\Core\User\UserInterface;
 use \Serializable;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -35,6 +36,8 @@ class User implements AdvancedUserInterface
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=255)
+     * @Assert\NotBlank(message="Entre com um usuario")
+     * @Assert\MinLength(limit=2, message="Entre com um usuario maior")
      */
     private $username;
 
@@ -67,6 +70,8 @@ class User implements AdvancedUserInterface
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Email()
      */
     private $email;
 
