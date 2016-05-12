@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e4fa40a-921e-44e0-87c2-885bb243c884" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SON/UserBundle/Controller/RegisterController.php" afterPath="$PROJECT_DIR$/src/SON/UserBundle/Controller/RegisterController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SON/UserBundle/Entity/User.php" afterPath="$PROJECT_DIR$/src/SON/UserBundle/Entity/User.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SON/UserBundle/Resources/views/Register/register.html.twig" afterPath="$PROJECT_DIR$/src/SON/UserBundle/Resources/views/Register/register.html.twig" />
     </list>
     <ignored path="SFSON.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,14 +26,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="RegisterController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RegisterController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SON/UserBundle/Controller/RegisterController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="30" column="53" selection-start-line="29" selection-start-column="8" selection-end-line="30" selection-end-column="53" />
+            <state relative-caret-position="234">
+              <caret line="37" column="54" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="54" />
               <folding>
                 <element signature="e#45#90#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SON/UserBundle/Entity/User.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="222" column="8" selection-start-line="222" selection-start-column="8" selection-end-line="222" selection-end-column="38" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -47,7 +58,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="register.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="register.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SON/UserBundle/Resources/views/Register/register.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
@@ -100,7 +111,6 @@
         <option value="$PROJECT_DIR$/src/SON/UserBundle/Resources/views/User/new.html.twig" />
         <option value="$PROJECT_DIR$/src/SON/UserBundle/Resources/views/User/edit.html.twig" />
         <option value="$PROJECT_DIR$/src/SON/UserBundle/Resources/views/Login/login.html.twig" />
-        <option value="$PROJECT_DIR$/src/SON/UserBundle/Entity/User.php" />
         <option value="$PROJECT_DIR$/src/SON/UserBundle/DataFixtures/ORM/LoadUser.php" />
         <option value="$PROJECT_DIR$/src/SON/UserBundle/Controller/UserController.php" />
         <option value="$PROJECT_DIR$/src/SON/UserBundle/Form/UserType.php" />
@@ -114,8 +124,9 @@
         <option value="$PROJECT_DIR$/src/SON/CategoriaBundle/Form/ProdutoType.php" />
         <option value="$PROJECT_DIR$/src/SON/CategoriaBundle/Resources/views/Produto/new.html.twig" />
         <option value="$PROJECT_DIR$/src/SON/CategoriaBundle/Resources/views/Produto/edit.html.twig" />
-        <option value="$PROJECT_DIR$/src/SON/UserBundle/Resources/views/Register/register.html.twig" />
+        <option value="$PROJECT_DIR$/src/SON/UserBundle/Entity/User.php" />
         <option value="$PROJECT_DIR$/src/SON/UserBundle/Controller/RegisterController.php" />
+        <option value="$PROJECT_DIR$/src/SON/UserBundle/Resources/views/Register/register.html.twig" />
       </list>
     </option>
   </component>
@@ -558,12 +569,12 @@
       <updated>1459901815593</updated>
       <workItem from="1462928524250" duration="9648000" />
       <workItem from="1462938606815" duration="255000" />
-      <workItem from="1463009002859" duration="1847000" />
+      <workItem from="1463009002859" duration="3109000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11750000" />
+    <option name="totallyTimeSpent" value="13012000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="0" />
@@ -776,13 +787,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SON/UserBundle/Entity/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="58" column="19" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SON/UserBundle/Resources/views/layout.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -965,14 +969,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SON/UserBundle/Resources/views/Register/register.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="13" selection-start-line="9" selection-start-column="8" selection-end-line="14" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SON/UserBundle/Controller/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2737">
@@ -981,13 +977,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/SON/UserBundle/Entity/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="222" column="8" selection-start-line="222" selection-start-column="8" selection-end-line="222" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/SON/UserBundle/Controller/RegisterController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="30" column="53" selection-start-line="29" selection-start-column="8" selection-end-line="30" selection-end-column="53" />
+        <state relative-caret-position="234">
+          <caret line="37" column="54" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="54" />
           <folding>
             <element signature="e#45#90#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SON/UserBundle/Resources/views/Register/register.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="13" selection-start-line="9" selection-start-column="8" selection-end-line="14" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>

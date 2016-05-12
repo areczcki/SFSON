@@ -71,6 +71,11 @@ class User implements AdvancedUserInterface
     private $email;
 
     /**
+     * @var string
+     */
+    private $plainPassword;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -215,7 +220,7 @@ class User implements AdvancedUserInterface
      */
     public function eraseCredentials()
     {
-        // TODO: Implement eraseCredentials() method.
+        $this->setPlainPassword(null);
     }
 
     /**
@@ -315,4 +320,21 @@ class User implements AdvancedUserInterface
     {
         return $this->isActive;
     }
+
+    /**
+     * @return string
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param string $plainPassword
+     */
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+    }
+
 }

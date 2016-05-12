@@ -35,7 +35,7 @@ class RegisterController extends Controller
         ))
             ->add("username", "text")
             ->add("email", "text")
-            ->add("password", "repeated",  array(
+            ->add("plainPassword", "repeated",  array(
                 "type" => "password"
             ))
             ->getForm();
@@ -46,7 +46,7 @@ class RegisterController extends Controller
             if($form->isValid()){
                 /** @var  User */
                 $user = $form->getData();
-                $user->setPassword($this->encodePassword($user, $user->getPassword()));
+                $user->setPassword($this->encodePassword($user, $user->getPlainPassword()));
 
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($user);
